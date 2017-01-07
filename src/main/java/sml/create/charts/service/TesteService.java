@@ -24,7 +24,12 @@ public class TesteService {
 	}
 	
 	@Transactional
-	public List<TempoExecucaoMetodo> getMediaRequisicao() {
+	public List<Object[]> getMediaRequisicao() {
 		return this.testeDao.getMediaRequisicao();
+	}
+	
+	@Transactional
+	public List<Object[]> getQuantidadeAcesso() {
+		return this.testeDao.getQuantidadeAcesso();
 	}
 }

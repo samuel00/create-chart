@@ -6,11 +6,9 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import sml.create.charts.modelo.Requisicao;
-import sml.create.charts.modelo.TempoExecucaoMetodo;
 
 @Repository
 public class TesteDao {
@@ -27,14 +25,19 @@ public class TesteDao {
 		session.persist(p);
 	}
 
-	public List<TempoExecucaoMetodo> getMediaRequisicao() {
+	public List<Object[]> getMediaRequisicao() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<TempoExecucaoMetodo> itens =  session
-				.createSQLQuery(
-						"SELECT AVG(r.tempo_execucao), rp.metodo_invocado FROM tab_requisicao r "
-						+ " INNER JOIN tab_requisicao_parametro rp ON rp.id = r.id "
-						+ "	GROUP BY rp.metodo_invocado").list();
-		
+		String sql = "SELECT AVG(r.tempo_execucao), rp.metodo_invocado FROM tab_requisicao r "
+				+ " INNER JOIN tab_requisicao_parametro rp ON rp.id = r.id "
+				+ "	GROUP BY rp.metodo_invocado";
+		List<Object[]> itens =  session.createSQLQuery(sql).list();
+		return itens;
+	}
+
+	public List<Object[]> getQuantidadeAcesso() {
+		Session session = this.sessionFactory.getCurrentSession();
+		String sql = "select count(r.data), DATE_FORMAT(r.data,'%d-%m-%Y') from tab_requisicao r group by r.data";
+		List<Object[]> itens =  session.createSQLQuery(sql).list();
 		return itens;
 	}
 }

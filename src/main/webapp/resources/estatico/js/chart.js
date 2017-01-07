@@ -3,16 +3,15 @@ $(function() {
 	$.get("chart/pie", function(data) {
 		console.log(data);
 		var json = $.parseJSON(data);
-
+		console.log(json.metodos);
 		Highcharts.chart('container', {
 			title : {
-				text : 'Status de Requisicao',
+				text : 'Media tempo de requisao X Metodo',
 				x : -20
 			//center
 			},
 			xAxis: {
-	            categories: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
-	                'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+	            categories: json.metodos
 	        },
 			yAxis : {
 				title : {
@@ -33,7 +32,9 @@ $(function() {
 				verticalAlign : 'middle',
 				borderWidth : 0
 			},
-			series : json
+			series : [{
+				name : 'tempo',
+				data: json.tempo}]
 		});
 	});
 

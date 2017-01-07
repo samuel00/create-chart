@@ -1,5 +1,6 @@
 package sml.create.charts.controller;
 
+import java.text.ParseException;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,64 +17,67 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import sml.create.charts.service.TesteService;
+import sml.create.charts.util.ConverterUtil;
 
 @Controller
 @RequestMapping("/chart")
 public class ChartController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ChartController.class);
-	
+
 	private TesteService testeService;
-	
-	
+
 	@Autowired
-	@Qualifier(value="testeService")
+	@Qualifier(value = "testeService")
 	public void setTesteService(TesteService testeService) {
 		this.testeService = testeService;
 	}
 
-
-	@RequestMapping(value = "/",method = RequestMethod.GET)
-	public String index(HttpServletRequest request) {
+	@RequestMapping(value = "/tempo", method = RequestMethod.GET)
+	public String tempo(HttpServletRequest request) {
 		return "gpiechart";
 	}
 
+	@RequestMapping(value = "/acesso", method = RequestMethod.GET)
+	public String acesso(HttpServletRequest request) {
+		return "grafico-diario";
+	}
+
+	@RequestMapping(value = "/chart/acesso", method = RequestMethod.GET)
+	public @ResponseBody String getGraficoAcesso(HttpServletRequest request) throws ParseException {
+		return ConverterUtil.listObjectToGraficoAcesso(testeService.getQuantidadeAcesso());
+	}
 
 	@RequestMapping(value = "/chart/pie", method = RequestMethod.GET)
 	public @ResponseBody String desenharGraficoPizza() {
-		JSONArray jsonArray = mockaObjeto();
-		
-		testeService.getMediaRequisicao();
-		return jsonArray.toString();
-
+		return ConverterUtil.ListaToJSON(testeService.getMediaRequisicao());
 	}
 
 	private JSONArray mockaObjeto() {
 		JSONObject json = new JSONObject();
 		JSONArray jsonArray = new JSONArray();
-		
-		int [] teste = getValores();
+
+		int[] teste = getValores();
 		json.put("name", "OK");
 		json.put("data", teste);
 		jsonArray.put(json);
-		
+
 		json = new JSONObject();
 		teste = getValores();
 		json.put("name", "Erro");
 		json.put("data", teste);
 		jsonArray.put(json);
-		
+
 		return jsonArray;
 	}
 
-
 	private int[] getValores() {
-		int [] teste = new int [13];
-		for(int i =0 ; i < teste.length; i++){
+		int[] teste = new int[13];
+		for (int i = 0; i < teste.length; i++) {
 			Random r = new Random();
 			int Low = 10;
 			int High = 100;
-			teste [i] = r.nextInt(High-Low) + Low;
+			teste[i] = r.nextInt(High - Low) + Low;
 		}
 		return teste;
 	}
