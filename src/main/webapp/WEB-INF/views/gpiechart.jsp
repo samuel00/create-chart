@@ -7,8 +7,8 @@
 </head>
 <body>
 	<script src="<c:url value="/resources/js/jquery.js" />"></script>
-	<script src="<c:url value="https://code.highcharts.com/highcharts.js"/>"></script>
-	<script src="<c:url value="https://code.highcharts.com/modules/exporting.js" />"></script>
+	<script src="<c:url value="/resources/js/highcharts.js"/>"></script>
+	<script src="<c:url value="/resources/js/exporting.js" />"></script>
 	<script src="<c:url value="/resources/js/chart.js" />"></script>
 	
 	<script src=""></script>

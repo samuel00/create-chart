@@ -1,7 +1,6 @@
 $(function() {
 
-	$.get("chart/pie", function(data) {
-		console.log(data);
+	$.get("../chart/media/tempo", function(data) {
 		var json = $.parseJSON(data);
 		console.log(json.metodos);
 		Highcharts.chart('container', {
@@ -15,7 +14,7 @@ $(function() {
 	        },
 			yAxis : {
 				title : {
-					text : 'Quantidade'
+					text : 'Tempo em ms'
 				},
 				plotLines : [ {
 					value : 0,
@@ -24,7 +23,7 @@ $(function() {
 				} ]
 			},
 			tooltip : {
-				valueSuffix : ' requisicoes'
+				valueSuffix : ' ms'
 			},
 			legend : {
 				layout : 'vertical',

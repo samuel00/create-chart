@@ -42,14 +42,19 @@ public class ChartController {
 	public String acesso(HttpServletRequest request) {
 		return "grafico-diario";
 	}
+	
+	@RequestMapping(value = "/quantidade/acesso/metodo", method = RequestMethod.GET)
+	public @ResponseBody String getGraficoQuantidadeAcessoMetodo(HttpServletRequest request) throws ParseException {
+		return ConverterUtil.ListaToJSON(testeService.getQuantidadeAcessoMetodo());
+	}
 
-	@RequestMapping(value = "/chart/acesso", method = RequestMethod.GET)
-	public @ResponseBody String getGraficoAcesso(HttpServletRequest request) throws ParseException {
+	@RequestMapping(value = "/quantidade/acesso", method = RequestMethod.GET)
+	public @ResponseBody String getGraficoQuantidadeAcesso(HttpServletRequest request) throws ParseException {
 		return ConverterUtil.listObjectToGraficoAcesso(testeService.getQuantidadeAcesso());
 	}
 
-	@RequestMapping(value = "/chart/pie", method = RequestMethod.GET)
-	public @ResponseBody String desenharGraficoPizza() {
+	@RequestMapping(value = "/media/tempo", method = RequestMethod.GET)
+	public @ResponseBody String getGraficoMediaTempo() {
 		return ConverterUtil.ListaToJSON(testeService.getMediaRequisicao());
 	}
 

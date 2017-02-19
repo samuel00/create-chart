@@ -32,4 +32,14 @@ public class TesteService {
 	public List<Object[]> getQuantidadeAcesso() {
 		return this.testeDao.getQuantidadeAcesso();
 	}
+	
+	@Transactional
+	public List<Object[]> getQuantidadeAcessoMetodo() {
+		return this.testeDao.getMediaRequisicaoMetodo();
+	}
+	
+	@Transactional
+	public List<Object[]> getHealthCheckRequisicaoMetodo() {
+		return this.testeDao.getHealthCheckRequisicaoMetodo();
+	}
 }
