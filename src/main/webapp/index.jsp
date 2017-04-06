@@ -86,7 +86,7 @@
 		<ul>
 			<li class="active"><a href="index.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a></li>
 			<li><a href="paginas/charts.jsp"><i class="icon icon-signal"></i><span>Gráficos</span></a></li>
-			<li><a href="widgets.html"><i class="icon icon-inbox"></i> <span>Documentação</span></a></li>
+			<li><a href="paginas/document.jsp"><i class="icon icon-inbox"></i> <span>Documentação</span></a></li>
 <!-- 			<li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li> -->
 <!-- 			<li><a href="grid.html"><i class="icon icon-fullscreen"></i> -->
 <!-- 					<span>Full width</span></a></li> -->
@@ -154,7 +154,7 @@
 							My Dashboard
 					</a></li> -->
 					<li class="bg_lg span3"><a href="paginas/charts.jsp"> <i class="icon-signal"></i> Gráficos	</a></li>
-					<li class="bg_ly"><a href="widgets.html"> <i class="icon-inbox"></i>Documentação</a></li>
+					<li class="bg_ly"><a href="paginas/document.jsp"> <i class="icon-inbox"></i>Documentação</a></li>
 					  <!--<li class="bg_lo"><a href="tables.html"> <i
 							class="icon-th"></i> Tables
 					</a></li>

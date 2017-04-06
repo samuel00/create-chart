@@ -1,22 +1,20 @@
 $(function() {
 
-	$.get("chart/pie", function(data) {
-		console.log(data);
+	$.get("../chart/media/tempo", function(data) {
 		var json = $.parseJSON(data);
-
+		console.log(json.metodos);
 		Highcharts.chart('container', {
 			title : {
-				text : 'Status de Requisicao',
+				text : 'Media tempo de requisao X Metodo',
 				x : -20
 			//center
 			},
 			xAxis: {
-	            categories: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
-	                'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+	            categories: json.metodos
 	        },
 			yAxis : {
 				title : {
-					text : 'Quantidade'
+					text : 'Tempo em ms'
 				},
 				plotLines : [ {
 					value : 0,
@@ -25,7 +23,7 @@ $(function() {
 				} ]
 			},
 			tooltip : {
-				valueSuffix : ' requisicoes'
+				valueSuffix : ' ms'
 			},
 			legend : {
 				layout : 'vertical',
@@ -33,8 +31,15 @@ $(function() {
 				verticalAlign : 'middle',
 				borderWidth : 0
 			},
-			series : json
+			series : [{
+				name : 'tempo',
+				data: json.tempo}]
 		});
+		
+		
+		var jsonPretty = JSON.stringify(json, undefined, 2);
+		$("#json_teste").text(jsonPretty);
+		
 	});
 
 });

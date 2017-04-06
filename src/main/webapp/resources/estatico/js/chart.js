@@ -35,6 +35,11 @@ $(function() {
 				name : 'tempo',
 				data: json.tempo}]
 		});
+		
+		
+		var jsonPretty = JSON.stringify(json, undefined, 2);
+		$("#json_teste").text(jsonPretty);
+		
 	});
 
 });
